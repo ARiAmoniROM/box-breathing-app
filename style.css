@@ -1,0 +1,83 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Mono', monospace; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0; 
+    color: #333; 
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* アニメーションエリア (正方形) - 基盤となる要素 */
+.animation-area {
+    position: relative;
+    border: 2px solid #333; /* 縁の色は #333、太さは2px */
+    background-color: transparent; 
+    
+    z-index: 1; 
+    pointer-events: none; 
+
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+/* フェーズテキスト */
+#phase-text {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    z-index: 3; 
+    pointer-events: none; 
+    line-height: 1; 
+}
+
+/* 光点のコンテナ - .animation-area を基準に絶対配置し、サイズを大きくして中央に配置 */
+.point-container { 
+    position: absolute; 
+    /* width/height/top/left は JavaScript で動的に設定 */
+    top: 0; /* 初期値として設定、JSで上書きされる */
+    left: 0; /* 初期値として設定、JSで上書きされる */
+    width: 100%; /* 初期値として設定、JSで上書きされる */
+    height: 100%; /* 初期値として設定、JSで上書きされる */
+    z-index: 2; 
+    pointer-events: none; 
+    /* border: 1px dashed blue; /* テスト用 */
+}
+
+/* 光点自体 */
+.point { 
+    position: absolute;
+    width: 20px; 
+    height: 20px; 
+    background-color: #333; /* 光点の色も #333 */
+    border-radius: 50%; 
+    /* transition プロパティは JavaScript で設定 */
+    /* transform: translate(-50%, -50%); ← この行は削除/コメントアウト */
+    z-index: 2; 
+    pointer-events: none; 
+}
+
+/* クリック検出用のオーバーレイ (変更なし) */
+.click-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10; 
+    background-color: transparent; 
+    cursor: pointer; 
+    pointer-events: auto; 
+}
